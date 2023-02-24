@@ -5,31 +5,22 @@ function solveEquation(a, b, c) {
 
   discriminant = (b**2) - 4 * a * c;
 
-  if (discriminant < 0) {
-    return arr;
-  } else if (discriminant === 0) {
-    arr[0] = -b / (2 * a);
-    return arr;
-  } else {
+  if (discriminant === 0) {
+    arr[0] = -b / (2 * a); 
+  } else if (discriminant > 0) {
     arr[0] = (-b + Math.sqrt(discriminant) ) / (2 * a);
     arr[1] = (-b - Math.sqrt(discriminant) ) / (2 * a);
-    return arr;
   }
 
+  return arr;
 }
 
 
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
   
-  if (isNaN(percent)) {
-    return false;     //"некорректно введен процент"
-  } else if (isNaN(contribution)) {
-    return false;     //"некорректно введен вклад"
-  } else if (isNaN(amount)) {
-    return false;     //"некорректно введена сумма"
-  } else if (isNaN(countMonths)) {
-    return false;     //"некорректно введено колличество месяцев"
+  if (isNaN(percent) || isNaN(contribution) || isNaN(amount) || isNaN(countMonths)) {
+    return false;     //некорректно введены данные
   }
 
   percent = percent / 100; //преобразование процентной ставки в диапазон от 0 до 1
