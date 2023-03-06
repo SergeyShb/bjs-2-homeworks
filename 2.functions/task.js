@@ -115,9 +115,9 @@ function averageEvenElementsWorker(...arr) {
 //задача 3
 
 function makeWork (arrOfArr, func) {
-  let maxWorkerResult = arrOfArr[0][0];
+  let maxWorkerResult = func(...arrOfArr[0]);     // это результат функции от нулевого переданного значения (массива). Поэтому делее цикл можно будет начинать с первого элемента, а не с нулевого.  
 
-  for (let i = 0; i < arrOfArr.length; i++) {
+  for (let i = 1; i < arrOfArr.length; i++) {
       func(...arrOfArr[i]);
       const result = func(...arrOfArr[i]);
 
