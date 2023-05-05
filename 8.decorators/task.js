@@ -6,14 +6,13 @@ function cachingDecoratorNew(func) {
     const hash = md5(args); 
     let objectInCache = cache.find((item) => item.hash === hash); 
     if (objectInCache) { 
-      let i = cache.indexOf(objectInCache);
-      console.log("Из кэша: " + cache[i].value); 
-      return "Из кэша: " + cache[i].value;
+      console.log("Из кэша: " + objectInCache.value);
+      return "Из кэша: " + objectInCache.value;
     }
 
     let result = func(...args); 
     cache.push({
-      hash: md5(args), 
+      hash: hash, 
       value: result
     }); 
     if (cache.length > 5) { 
@@ -40,17 +39,11 @@ function debounceDecoratorNew(func, delay) {
     }
 
     if(timeoutID) {
-      console.log("удалили текущий таймаут");
-      clearTimeout(timeoutID);
+      clearTimeout(timeoutID); 
     } 
 
-    console.log("создаем новый таймаут");
     timeoutID = setTimeout(() => {
-      timeoutID = null;
-     
-      wrapper.count += 1;
-      console.log("вызвали колбек");
-      func(...args);
+      func(...args); 
       wrapper.count += 1;
     }, delay);
   }
